@@ -102,8 +102,8 @@
         const result = document.getElementById('result');
 
         const slices = [
-            { color: '#ff6b6b', label: '1 Wand 🪄' },
-            { color: '#45b7d1', label: '3 Wands 🪄🪄🪄' },
+            { color: '#ff6b6b', label: '1 Wand' },
+            { color: '#45b7d1', label: '3 Wands' },
         ];
 
         // Create wheel slices
@@ -135,6 +135,13 @@
                 
                 // Display celebratory effects
                 confetti();
+
+                // Change button to download link
+                spinButton.textContent = "Download WizArt AI to claim your magic wands!";
+                spinButton.onclick = () => {
+                    window.location.href = "https://apps.apple.com/tr/app/wizart-ai/id6503193626?platform=iphone";
+                };
+                spinButton.disabled = false;
             }, 5000);
         });
 
@@ -172,7 +179,6 @@
 
             setTimeout(() => {
                 document.body.removeChild(confettiContainer);
-                spinButton.disabled = false;
             }, 7000);
         }
     </script>
