@@ -18,6 +18,16 @@ function drawWheel() {
         ctx.fill();
         ctx.closePath();
 
+        // Draw slice border for depth
+        ctx.beginPath();
+        ctx.moveTo(canvas.width / 2, canvas.height / 2);
+        ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, currentAngle + i * sliceAngle, currentAngle + (i + 1) * sliceAngle);
+        ctx.lineTo(canvas.width / 2, canvas.height / 2);
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.closePath();
+
         // Draw text
         ctx.save();
         ctx.translate(canvas.width / 2, canvas.height / 2);
