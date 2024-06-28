@@ -48,7 +48,10 @@ function spin() {
         } else {
             spinning = false;
             const winningIndex = Math.floor((slices - ((currentAngle + Math.PI / 2) % (2 * Math.PI)) / sliceAngle) % slices);
-            setTimeout(() => alert(`Congratulations! You won ${prizes[winningIndex]}`), 100);
+            setTimeout(() => {
+                showPopup(prizes[winningIndex]);
+                triggerConfetti();
+            }, 100);
         }
     }
     requestAnimationFrame(animate);
@@ -56,6 +59,30 @@ function spin() {
 
 function easeOut(t) {
     return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+}
+
+function showPopup(prize) {
+    const popup = document.getElementById('popup');
+    const prizeText = document.getElementById('prizeText');
+    prizeText.innerText = `You won ${prize}!`;
+    popup.style.display = 'block';
+}
+
+function closePopup() {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'none';
+}
+
+function triggerConfetti() {
+    const confettiCanvas = document.getElementById('confettiCanvas');
+    confetti.create(confettiCanvas, {
+        resize: true,
+        useWorker: true
+    })({
+        particleCount: 200,
+        spread: 70,
+        origin: { y: 0.6 }
+    });
 }
 
 drawWheel();
